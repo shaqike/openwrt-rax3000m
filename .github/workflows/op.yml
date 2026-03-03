@@ -29,20 +29,13 @@ jobs:
     runs-on: ubuntu-22.04
     strategy:
       matrix:
-        device: ["rax3000m", "rax3000me", "rax3000m-emmc", "rax3000m-nand", "rax3000m-256m-nand"]
+        device: ["rax3000m", "rax3000me", ]
         source: ["openwrt"]
         include:
           - device: "rax3000m"
             config: "CONFIG_TARGET_DEVICE_mediatek_filogic_DEVICE_cmcc_rax3000m=y"
           - device: "rax3000me"
             config: "CONFIG_TARGET_DEVICE_mediatek_filogic_DEVICE_cmcc_rax3000me=y"
-          - device: "rax3000m-emmc"
-            config: "CONFIG_TARGET_DEVICE_mediatek_filogic_DEVICE_cmcc_rax3000m-emmc=y"
-          - device: "rax3000m-nand"
-            config: "CONFIG_TARGET_DEVICE_mediatek_filogic_DEVICE_cmcc_rax3000m-nand=y"
-          - device: "rax3000m-256m-nand"
-            config: "CONFIG_TARGET_DEVICE_mediatek_filogic_DEVICE_cmcc_rax3000m-256m-nand=y"
-
     steps: 
     - name: 检查分支
       uses: actions/checkout@v4
