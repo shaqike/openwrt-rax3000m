@@ -16,11 +16,11 @@ jobs:
     runs-on: ubuntu-24.04
     strategy:
       matrix:
-        device: ["rax3000m-emmc"]
+        device: ["ipq40xx_generic"]
         source: ["openwrt"]
         include:
-          - device: "rax3000m-emmc"
-            config: "CONFIG_TARGET_DEVICE_mediatek_filogic_DEVICE_cmcc_rax3000m-emmc=y"
+          - device: "ipq40xx_generic"
+            config: "CONFIG_TARGET_ipq40xx_generic_DEVICE_asus_rt-ac42u=y"
 
 
     steps: 
@@ -108,8 +108,8 @@ jobs:
       run: |
         [ -e files ] && mv files $SOURCE_NAME/files
         cat <<EOF >>$SOURCE_NAME/.config
-        CONFIG_TARGET_mediatek=y
-        CONFIG_TARGET_mediatek_filogic=y
+        CONFIG_TARGET_ipq40xx=y
+        CONFIG_TARGET_ipq40xx_generic=y
         ${{ matrix.config }}
         EOF
         
@@ -139,8 +139,8 @@ jobs:
     - name: 整理文件
       id: organize
       run: |
-        mkdir -p $SOURCE_NAME/bin/packages/aarch64_cortex-a53/kmod
-        cp -rf $SOURCE_NAME/bin/targets/*/*/*/* $SOURCE_NAME/bin/packages/aarch64_cortex-a53/kmod
+        mkdir -p $SOURCE_NAME/bin/packages/cortex-a7+neon-vfpv4/kmod
+        cp -rf $SOURCE_NAME/bin/targets/*/*/*/* $SOURCE_NAME/bin/packages/cortex-a7+neon-vfpv4/kmod
         rm -rf $SOURCE_NAME/bin/packages/*/routing
         rm -rf $SOURCE_NAME/bin/packages/*/telephony
         cd $SOURCE_NAME/bin/targets/*/*
@@ -157,10 +157,10 @@ jobs:
     - name: 签名
       run: |
         cd $SOURCE_NAME
-        bash kmod-sign bin/packages/aarch64_cortex-a53/base
-        bash kmod-sign bin/packages/aarch64_cortex-a53/kmod
-        bash kmod-sign bin/packages/aarch64_cortex-a53/luci
-        bash kmod-sign bin/packages/aarch64_cortex-a53/packages
+        bash kmod-sign bin/packages/cortex-a7+neon-vfpv4/base
+        bash kmod-sign bin/packages/cortex-a7+neon-vfpv4/kmod
+        bash kmod-sign bin/packages/cortex-a7+neon-vfpv4/luci
+        bash kmod-sign bin/packages/cortex-a7+neon-vfpv4/packages
 
     - name: 上传apk
       env:
