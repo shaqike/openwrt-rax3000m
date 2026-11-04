@@ -1,7 +1,6 @@
 CONFIG_TARGET_ipq40xx_generic_DEVICE_asus_rt-ac42u=y""
 
 #######################################################################
-
 CONFIG_HAS_SUBTARGETS=y
 CONFIG_HAS_DEVICES=y
 CONFIG_TARGET_BOARD="ipq40xx"
@@ -176,7 +175,6 @@ CONFIG_first_card_name="MT7981"
 # CONFIG_MTK_PRE_CAL_TRX_SET2_SUPPORT is not set
 # CONFIG_MTK_RLM_CAL_CACHE_SUPPORT is not set
 # CONFIG_MTK_SNIFFER_RADIOTAP_SUPPORT is not set
-
 ### Utilities
 CONFIG_PACKAGE_dnsmasq-full=y
 # CONFIG_PACKAGE_dnsmasq is not set
